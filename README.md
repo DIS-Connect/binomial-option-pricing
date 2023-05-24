@@ -56,7 +56,7 @@ In the simple one-step model, the price of the stock either increases or decreas
 | -------------- | ----------------- | --------------------------- | --------------------------- |
 |Stock price| $S_0$    | $S_u = u \cdot S_0$                 | $S_d = d \cdot  S_0$                 |
 |Risk free asset | $B_0 =1$    | $B_1 = e^{r}$                  | $B_1 = e^{r}$                |
-|Option Value |$C_0=?$   | $C_u = max\{0, S_u - K\}$                  | $C_u = max\{0, S_d - K\}$$                   |
+|Option Value |$C_0=?$  | $C_u = max\{0, S_u - K\}$                  | $C_u = max\{0, S_d - K\}$      |
 
 
 
@@ -81,13 +81,14 @@ $\alpha = \frac{1}{B_1}(C_d - \beta  S_d) = e^{-rT} (C_d - (\frac{C_u - C_d}{S_u
 
 Because of the law of one price it must follow that:
 
-$C_0 = V_0 = \alpha B_0 + \beta S_0 \\$
+$C_0 = V_0 = \alpha B_0 + \beta S_0$
 
 simplified:
 
 
-$= e^{-rT}\left[qC_u + (1-q) C_d\right] \quad $ with $\quad q = \frac{e^{rT} - d}{u-d}\quad$
+$C_0= e^{-rT}\left[qC_u + (1-q) C_d\right] \quad$ with $\quad q = \frac{e^{rT} - d}{u-d}\quad$
 (*1)
+
 
 
 ## Example: Call option
