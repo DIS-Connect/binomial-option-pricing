@@ -2,7 +2,7 @@
 
 # Arbitrage and the Law of One Price
 
-Let $V$ be a portfolio and $V_t$ the value of this portfolio at time $t$. Arbitrage is possible if 
+Let $V$ be a portfolio and $V_t$ represent the value of this portfolio at time $t$. Arbitrage is feasible if 
 
 
 $V_0 = 0$
@@ -12,7 +12,7 @@ $\\Pr(V_t \ge  0) = 1$
 $Pr(V_t >  1) > 0$
 
 
-The Law of One Price now states that:
+The Law of One Price states that:
 
 $Pr(V^a_t = V^b_t) = 1$ for any portfolios $V^a$ and $V^b$ and time $t$
 
@@ -46,7 +46,7 @@ $N$: time steps
 
 
 
-In the simple on step model the price of the stock either goes up or down with a probability of $p$ and $1-p$. 
+In the simple one-step model, the price of the stock either increases or decreases with probabilities $p$ and $1-p$ respectively.
 
 <img src="pictures/binomial_onestep.jpg" width="200">
 
@@ -61,17 +61,17 @@ In the simple on step model the price of the stock either goes up or down with a
 
 
 
-We want to construct a portfolio $V = \alpha S + \beta B$ that mirrors the value of the option in both scenarios. From the value of this portfolio we can defer the value of the option. 
+We aim to construct a portfolio $V = \alpha S + \beta B$ that mirrors the option value in both scenarios. From the portfolio's value, we can infer the option's value.
 
-Thus $Pr(V_1 = C_1) = 1$ has to hold.
+Thus, it must hold that $Pr(V_1 = C_1) = 1$.
 
-To get accieve this, it musst follow that:
+For this to be the case, it must follow that:
 
 $C_u = \alpha B_1 + \beta S_u$ and 
 
 $C_d = \alpha B_1 + \beta S_d$
 
-solving for $\alpha$ and $\beta$:
+Solving for $\alpha$ and $\beta$, we find:
 
 $\beta = \frac{C_u - C_d}{S_u - S_d}$
 
@@ -109,22 +109,29 @@ $\beta = \frac{7-0}{110-90} = 0.35$
 
 <img src="pictures/option_hedge.png">
 
-We can see that our portfolio mirrors the value of the option in both scenarios. Because of the law of one price it has to follow that:
+
+As shown, our portfolio mirrors the value of the option in both scenarios. Due to the Law of One Price, it must follow that:
+
 
 $C_0 = V_0 = \alpha + \beta * 100 = 5.0363$
 
-If we charge 5.0363$ for this option we can construct a portfolio that mirrors the value of the option, thus the fair value of the option is 5.0363$. 
+If we charge 5.0363$ for this option, we can construct a portfolio that mirrors the value of the option. Thus, the fair value of the option is 5.0363$.
+
 
 # Multi Step Binomial Pricing Model
 
 The multi step model is based on the same logic as the single step model.
-In my multi step model I make the simplification, that $u = 1/d$ to make computation more efficient.
+In the multi step model I make the simplification, that $u = 1/d$ to make computation more efficient.
 
 <img src="pictures/multi_binom.png">
 
-To get the value of $C_0$ we need to go backwards through the tree treating each step as a single step binomial model. 
-The first thing we need to do is to calculate all possible values of the the stock at the time of maturity.
-Once we have that we can work backwards through the tree.
+
+To compute the value of $C_0$, we need to traverse backward through the tree, treating each step as a single-step binomial model. 
+The first task is to calculate all possible values of the stock and option at maturity. 
+Once we have those, we can work backward through the tree.
+
+
+
 
 We view each possible state as a node in a graph.
 Let t be the time step and i be the Node from bottom to the top starting with $0$.
@@ -135,7 +142,7 @@ $S_{i, j} = u^{i} \cdot d^{j-i}S$
 
 $C_{i,j}$: Value of option at node (i,j)
 
-We can now recursively define the value of the option using the formulas derrived earlier.
+We can now recursively define the value of the option using the formulas derived earlier.
 
 $C_{i,t}= e^{-rT}\left[qC_{i+1,j+1} + (1-q) C_{i,j+1}\right] \quad$ with $\quad q = \frac{e^{rT} - d}{u-d}$
 
