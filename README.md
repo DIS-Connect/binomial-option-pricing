@@ -5,17 +5,19 @@
 Let $V$ be a portfolio and $V_t$ the value of this portfolio at time $t$. Arbitrage is possible if 
 
 
-$V_0 = 0\\$ 
-$\\Pr(V_t \ge  0) = 1 \\$
-$Pr(V_t >  1) > 0 \\\\$
+$V_0 = 0$
+
+$\\Pr(V_t \ge  0) = 1$
+
+$Pr(V_t >  1) > 0$
 
 
 The Law of One Price now states that:
 
 $Pr(V^a_t = V^b_t) = 1$ for any portfolios $V^a$ and $V^b$ and time $t$
-$\\$ 
+
 $\Rightarrow$
-$\\$ 
+ 
 $V^a_0 = V^b_0$
 
 
@@ -23,22 +25,30 @@ $V^a_0 = V^b_0$
 # One Step Binomial Pricing Model
 
 ### Variables:
-$\\S:$ Stock
-$\\B$: Asset with continous compounding
-$\\C$: Option
-$\\r$: risk free rate
-$\\u$: up factor
-$\\d$: down factor
-$\\p$: up probability
-$\\T$: time to maturity
-$\\N$: time steps
+$S:$ Stock
+
+$B$: Asset with continous compounding
+
+$C$: Option
+
+$r$: risk free rate
+
+$u$: up factor
+
+$d$: down factor
+
+$p$: up probability
+
+$T$: time to maturity
+
+$N$: time steps
 
 
 
 
 In the simple on step model the price of the stock either goes up or down with a probability of $p$ and $1-p$. 
 
-<img src="binomial_onestep.jpg" width="200">
+<img src="pictures/binomial_onestep.jpg" width="200">
 
 
 
@@ -97,7 +107,7 @@ $\alpha = e^{-0.05}(- 0.35 * 90) = -29.9637$
 $\beta = \frac{7-0}{110-90} = 0.35$
 
 
-<img src="option_hedge.png">
+<img src="pictures/option_hedge.png">
 
 We can see that our portfolio mirrors the value of the option in both scenarios. Because of the law of one price it has to follow that:
 
@@ -110,7 +120,7 @@ If we charge 5.0363$ for this option we can construct a portfolio that mirrors t
 The multi step model is based on the same logic as the single step model.
 In my multi step model I make the simplification, that $u = 1/d$ to make computation more efficient.
 
-<img src="Screenshot 2023-05-24 at 12.55.35.png">
+<img src="pictures/multi_binom.png">
 
 To get the value of $C_0$ we need to go backwards through the tree treating each step as a single step binomial model. 
 The first thing we need to do is to calculate all possible values of the the stock at the time of maturity.
@@ -127,7 +137,7 @@ $C_{i,j}$: Value of option at node (i,j)
 
 We can now recursively define the value of the option using the formulas derrived earlier.
 
-$C_{i,t}= e^{-rT}\left[qC_{i+1,j+1} + (1-q) C_{i,j+1}\right] \quad $ with $\quad q = \frac{e^{rT} - d}{u-d}$
+$C_{i,t}= e^{-rT}\left[qC_{i+1,j+1} + (1-q) C_{i,j+1}\right] \quad$ with $\quad q = \frac{e^{rT} - d}{u-d}$
 
 With $C_0 = C_{0,0}$
 
@@ -142,15 +152,15 @@ With $C_0 = C_{0,0}$
 
 
 
-$C_0 = V_0 = \alpha B_0 + \beta S_0 \\$
+$C_0 = V_0 = \alpha B_0 + \beta S_0$
 
 
-$= e^{-rT} (C_d - (\frac{C_u - C_d}{u - d}) d) + \frac{C_u - C_d}{S_u - S_d} \cdot S_0 \\$ 
+$= e^{-rT} (C_d - (\frac{C_u - C_d}{u - d}) d) + \frac{C_u - C_d}{S_u - S_d} \cdot S_0$ 
 
-$= e^{-rT}\left[C_d + (\frac{C_u - C_d}{u - d})(e^{rT} - d)\right]\\$
+$= e^{-rT}\left[C_d + (\frac{C_u - C_d}{u - d})(e^{rT} - d)\right]$
 
 $q = \frac{e^{rT} - d}{u-d}$
 
-$= e^{-rT}\left[C_d + (C_u - C_d)q\right]\\$
+$= e^{-rT}\left[C_d + (C_u - C_d)q\right]$
 
-$= e^{-rT}\left[qC_u + (1-q) C_d\right]\\$
+$= e^{-rT}\left[qC_u + (1-q) C_d\right]$
