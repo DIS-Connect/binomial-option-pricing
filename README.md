@@ -56,7 +56,7 @@ In the simple one-step model, the price of the stock either increases or decreas
 | -------------- | ----------------- | --------------------------- | --------------------------- |
 |Stock price| $S_0$    | $S_u = u \cdot S_0$                 | $S_d = d \cdot  S_0$                 |
 |Risk free asset | $B_0 =1$    | $B_1 = e^{r}$                  | $B_1 = e^{r}$                |
-|Option Value |$C_0=?$  | $C_u = max\{0, S_u - K\}$                  | $C_u = max\{0, S_d - K\}$      |
+|Option Value |$C_0=?$  | $C_u = max\{0, S_u - K\}$                  | $C_u = max{0, S_d - K}$      |
 
 
 
@@ -149,6 +149,15 @@ $C_{i,t}= e^{-rT}\left[qC_{i+1,j+1} + (1-q) C_{i,j+1}\right] \quad$ with $\quad 
 
 With $C_0 = C_{0,0}$
 
+
+
+# Calculating the Parameters
+
+There are different methods to determine the up and down factors. I chose the Cox, Ross & Rubinstein (CRR) method here because it ensures, that the tree is recombinant:
+
+$u = e^{\sigma \sqrt{Δt}}$
+
+$d = e^{-\sigma \sqrt{Δt}}$
 
 
 ----------
